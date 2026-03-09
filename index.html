@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Miss You</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ff6b6b; /* light red background */
+      font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: white;
+      font-size: 4rem;
+      z-index: 2;
+      text-align: center;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #b3002d; /* darker red hearts */
+      transform: rotate(45deg);
+      animation: float 6s infinite ease-in;
+    }
+
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #b3002d;
+      border-radius: 50%;
+    }
+
+    .heart:before {
+      top: -15px;
+      left: 0;
+    }
+
+    .heart:after {
+      left: -15px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      20% { opacity: 1; }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>I miss you</h1>
+
+<script>
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    heart.style.opacity = Math.random();
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
